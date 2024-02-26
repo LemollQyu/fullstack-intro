@@ -1,12 +1,16 @@
 'use client'
 
 import { useState }  from "react"
+import Link from "next/link"
+
 
 
 export default function AddPost(){
 	
 	const [title, setTitle] = useState('')
 	const [content, setContent] = useState('')
+	
+	
 	
 	const handleTitle = (e) => {
 		e.preventDefault()
@@ -23,12 +27,20 @@ export default function AddPost(){
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		
-		console.log(title)
-		console.log(content)
+		try{
+			fetch("/api/add-post", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({title, content})
+			})
+		} catch (error) { console.error(error) }
 		
 		
 		setTitle("")
 		setContent("")
+		
 		
 	}
 
@@ -37,6 +49,8 @@ export default function AddPost(){
 		<>
 			<div>
 				<h1>Add Post</h1>
+				
+				<Link className="border rounded-md px-3 py-2" href={"/"}>Home</Link>
 				
 				<form className="border px-3 py-2 mx-auto w-1/2" onSubmit={handleSubmit}>
 					<div>

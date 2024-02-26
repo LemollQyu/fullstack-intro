@@ -25,6 +25,7 @@ export default async function Home() {
 		<h1 className="mb-10">Feeds</h1>
 		
 		<Link className=" border px-2 py-1 rounded-md" href={"/add-post"}>Add Post</Link>
+		<div className="grid grid-cols-4 gap-4">
 		{
 			posts.map((post) => {
 				return(
@@ -41,6 +42,7 @@ export default async function Home() {
 			})
 			
 		}
+		</div>
 		
     </main>
   );
